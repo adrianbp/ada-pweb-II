@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,10 +15,10 @@ import lombok.NoArgsConstructor;
 public class LivroDTO {
 
     private Long id;
-    @NotBlank(message="O campo editora id deve estar preenchido")
-    private Editora editora_id;
-    @NotBlank(message="O campo categoria id deve estar preenchido")
-    private Categoria categoria_id;
+    @NotNull(message="O campo editora id deve estar preenchido")
+    private Long editora_id;
+    @NotNull(message="O campo categoria id deve estar preenchido")
+    private Long categoria_id;
     @NotBlank(message="O campo nome deve estar preenchido")
     private String nome;
     @NotBlank(message="O campo isbn deve estar preenchido")

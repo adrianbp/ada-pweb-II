@@ -47,7 +47,6 @@ public class LivroServiceImpl implements LivroService {
     @Override
     public LivroDTO criar(LivroDTO livroDTO) {
         Livro livro = livroMapper.parseEntity(livroDTO);
-
         livro.setId(null);
         livroRepository.save(livro);
 
@@ -82,7 +81,10 @@ public class LivroServiceImpl implements LivroService {
 
     @Override
     public List<LivroDTO> buscaPorCategoria(Long categoriaid) {
-        List<Livro> livros = livroRepository.findByCategoriaId(categoriaid);
+
+        Categoria categoria = new Categoria();
+        categoria.setId(categoriaid);
+        List<Livro> livros = livroRepository.findByCategoria(categoria);
 
         return livroMapper.parseListDTO(livros);
 
@@ -90,7 +92,10 @@ public class LivroServiceImpl implements LivroService {
 
     @Override
     public List<LivroDTO> buscaPorEditora(Long editoraId) {
-        List<Livro> livros = livroRepository.findByEditoraId(editoraId);
+
+        Editora editora = new Editora();
+        editora.setId(editoraId);
+        List<Livro> livros = livroRepository.findByEditora(editora);
 
         return livroMapper.parseListDTO(livros);
     }
